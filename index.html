@@ -39,42 +39,42 @@
     <h1>CYPRI Score Calculator</h1>
 
     <form id="cypri-form">
-        <label><input type="checkbox" name="psychiatric_med"> Psychiatric medication (1 point)
+        <label><input type="checkbox" name="psychiatric_med"> The use of psychiatric medication (1 point)
             <div class="details">
-                Psychiatric drugs classified as CYP2D6/CYP2C19 substrates according to [1,2,3,4,5]. Examples: atomoxetine, modafinil, amitriptyline, nortriptyline, paroxetine, citalopram, escitalopram, fluoxetine, aripiprazole, risperidone, diazepam, venlafaxine.
+                Psychiatric drugs are classified as CYP2D6/CYP2C19 substrates according to the Hiemke 2018 Consensus Guidelines for Therapeutic Drug Monitoring in Psychiatry, Flockhart Table, Pharmacogenomics Knowledge Base, CPIC, and DPWG guidelines for PGx-based drug metabolism impact [1,2,3,4,5]. Examples: atomoxetine, modafinil, amitriptyline, nortriptyline, paroxetine, citalopram, escitalopram, fluoxetine, aripiprazole, risperidone, diazepam, venlafaxine.
             </div>
         </label>
 
-        <label><input type="checkbox" name="somatic_med"> Somatic medication (1 point)
+        <label><input type="checkbox" name="somatic_med"> The use of somatic medication (1 point)
             <div class="details">
-                Non-psychiatric CYP2D6/CYP2C19 substrates according to [2,3,4,5]. Examples: clopidogrel, codeine, tramadol, omeprazole, pantoprazole, ondansetron, metoprolol.
+                Non-psychiatric drugs that are also substrates for CYP2D6 and CYP2C19 according to the Flockhart Table, The Pharmacogenomics Knowledge Base, CPIC, and DPWG guidelines [2,3,4,5]. Examples: clopidogrel, codeine, tramadol, omeprazole, pantoprazole, ondansetron, metoclopramide, voriconazole, metoprolol, propafenone.
             </div>
         </label>
 
         <label><input type="checkbox" name="treatment_resistance"> Treatment-resistant condition (1 point)
             <div class="details">
-                Defined as failure of two or more adequate medication trials [6].
+                Defined as the failure of two or more adequate medication trials despite verified adherence and appropriate dosing [6].
             </div>
         </label>
 
         <fieldset style="margin-top:20px;">
-            <legend>TDM discrepancy (choose one)</legend>
-            <label><input type="radio" name="tdm" value="3"> TDM major discrepancy (3 points)
+            <legend>Drug plasma levels (choose one)</legend>
+            <label><input type="radio" name="tdm" value="3"> Drug plasma levels do not correlate with the administered dose (3 points)
                 <div class="details">
-                    High dose with subtherapeutic levels or low dose with supratherapeutic levels, or abnormal parent/metabolite ratio [1].
+                    Based on therapeutic drug monitoring (TDM) results [1]: high dose with subtherapeutic drug levels (suggesting ultra-/rapid metabolism) OR low dose with supratherapeutic/toxic drug levels (suggesting intermediate/poor metabolism).
                 </div>
             </label>
-            <label><input type="radio" name="tdm" value="1"> TDM minor discrepancy (1 point)
+            <label><input type="radio" name="tdm" value="1"> Plasma drug concentration outside the established minimum-maximum range (1 point)
                 <div class="details">
-                    Plasma drug concentration outside min-max range or altered parent/metabolite ratio within normal levels but suggesting CYP2D6/CYP2C19 abnormality [1].
+                    Plasma drug concentration falls outside the established minimum-maximum range (C/Dlow and C/Dhigh) for the specific drug according to Hiemke 2018 [1], OR altered parent drug/metabolite ratio indicating non-normal CYP2D6/CYP2C19 metabolism (e.g., venlafaxine, risperidone, aripiprazole).
                 </div>
             </label>
             <label><input type="radio" name="tdm" value="0" checked> None</label>
         </fieldset>
 
-        <label><input type="checkbox" name="adr"> Clinically significant ADR (3 points)
+        <label><input type="checkbox" name="adr"> Clinically significant adverse drug reactions (3 points)
             <div class="details">
-                Clinically significant ADR related to CYP2D6/CYP2C19 substrates requiring dose adjustment, monitoring, discontinuation, or hospitalization [1,7,8].
+                Based solely on clinical observation and pharmacological history, ADRs resulting in: requiring dose adjustment, increased monitoring, drug discontinuation due to intolerance or toxicity, hospitalization due to ADR, or patient unable to tolerate the drug despite standard dosing [1,7,8]. ADRs not linked to CYP2C19/CYP2D6 metabolism variability (e.g., allergic reactions, weight gain) are excluded.
             </div>
         </label>
 
@@ -85,14 +85,14 @@
 
     <h3>References:</h3>
     <ol>
-        <li>Hiemke, C. et al. (2018). <i>Consensus Guidelines for TDM in Psychiatry.</i></li>
+        <li>Hiemke, C. et al. (2018). Consensus guidelines for therapeutic drug monitoring in neuropsychopharmacology: Update 2017. Pharmacopsychiatry.</li>
         <li>Indiana University Drug Interactions Table.</li>
-        <li>PharmGKB. <a href="https://www.pharmgkb.org/">www.pharmgkb.org</a></li>
-        <li>CPIC Guidelines. <a href="https://cpicpgx.org/guidelines/">cpicpgx.org</a></li>
-        <li>DPWG Guidelines. <a href="https://www.knmp.nl/dossiers/farmacogenetica/pharmacogenetics">KNMP</a></li>
-        <li>Howes, O. et al. (2022). <i>Treatment resistance in psychiatry.</i></li>
-        <li>Lingjaerde, O. et al. (2001). UKU-SERS [7].</li>
-        <li>Dreher, J. et al. (1999). Novel self-rating scale for ADR [8].</li>
+        <li>PharmGKB Database.</li>
+        <li>CPIC Guidelines.</li>
+        <li>DPWG Guidelines.</li>
+        <li>Howes O. et al., Treatment resistance in psychiatry, Molecular Psychiatry, 2022.</li>
+        <li>Lingjaerde, O. et al., UKU-SERS-Pat (2001).</li>
+        <li>Dreher, J. et al., ADR scale (1999).</li>
     </ol>
 
     <script>
