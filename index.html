@@ -17,12 +17,12 @@
             border-radius: 8px;
             padding: 15px;
             margin-bottom: 20px;
-            background-color: #fde725;
+            background-color: #5ec962;
         }
         .details {
             font-size: 14px;
             margin-top: 10px;
-            background: #d5e21a;
+            background: #90d743;
             padding: 10px;
             border-left: 3px solid #2c3e50;
             white-space: pre-line;
@@ -31,7 +31,7 @@
             border: 2px solid #2c3e50;
             border-radius: 8px;
             padding: 15px;
-            background-color: #a0da39;
+            background-color: #21918c;
         }
         legend {
             font-weight: bold;
@@ -57,20 +57,14 @@
 <div class="criterion-box">
 <label><input type="checkbox" name="psychiatric_med"> The use of psychiatric medication (1 point)</label>
 <div class="details">
-Psychiatric drugs are classified as CYP2D6/CYP2C19 substrates according to the Hiemke 2018 Consensus Guidelines for Therapeutic Drug Monitoring in Psychiatry, Flockhart Table, Pharmacogenomics Knowledge Base, CPIC, and DPWG guidelines for PGx-based drug metabolism impact [1,2,3,4,5].
-
-Examples:
-atomoxetine, modafinil, amitriptyline, nortriptyline, paroxetine, citalopram, escitalopram, fluoxetine, aripiprazole, risperidone, diazepam, venlafaxine.
+Psychiatric drugs are classified as CYP2D6/CYP2C19 substrates according to the Hiemke 2018 Consensus Guidelines for Therapeutic Drug Monitoring in Psychiatry, Flockhart Table, Pharmacogenomics Knowledge Base, CPIC, and DPWG guidelines for PGx-based drug metabolism impact [1,2,3,4,5].<br><br>Examples:<br>atomoxetine, modafinil, amitriptyline, nortriptyline, paroxetine, citalopram, escitalopram, fluoxetine, aripiprazole, risperidone, diazepam, venlafaxine.
 </div>
 </div>
 
 <div class="criterion-box">
 <label><input type="checkbox" name="somatic_med"> The use of somatic medication (1 point)</label>
 <div class="details">
-Non-psychiatric drugs that are also substrates for CYP2D6 and CYP2C19 according to the Flockhart Table, Pharmacogenomics Knowledge Base, CPIC, and DPWG guidelines [2,3,4,5].
-
-Examples:
-clopidogrel, codeine, tramadol, omeprazole, pantoprazole, ondansetron, metoclopramide, voriconazole, metoprolol, propafenone.
+Non-psychiatric drugs that are also substrates for CYP2D6 and CYP2C19 according to the Flockhart Table, Pharmacogenomics Knowledge Base, CPIC, and DPWG guidelines [2,3,4,5].<br><br>Examples:<br>clopidogrel, codeine, tramadol, omeprazole, pantoprazole, ondansetron, metoclopramide, voriconazole, metoprolol, propafenone.
 </div>
 </div>
 
@@ -86,14 +80,14 @@ Defined as the failure of two or more adequate medication trials despite verifie
 
 <label><input type="radio" name="tdm" value="3"> Drug plasma levels do not correlate with the administered dose (3 points)</label>
 <div class="details">
-Based on therapeutic drug monitoring (TDM) results [1], defined as:
-- High dose with subtherapeutic drug levels (suggesting ultra-/rapid metabolism), OR
+Based on therapeutic drug monitoring (TDM) results [1], defined as:<br>
+- High dose with subtherapeutic drug levels (suggesting ultra-/rapid metabolism), OR<br>
 - Low dose with supratherapeutic/toxic drug levels (suggesting intermediate/poor metabolism).
 </div>
 
 <label><input type="radio" name="tdm" value="1"> Plasma drug concentration falls outside the established minimum-maximum range (1 point)</label>
 <div class="details">
-- Plasma drug concentration falls outside the established minimum-maximum range (C/Dlow and C/Dhigh) for the specific drug according to Hiemke 2018 [1], OR
+- Plasma drug concentration falls outside the established minimum-maximum range (C/Dlow and C/Dhigh) for the specific drug according to Hiemke 2018 [1], OR<br>
 - Altered parent drug/metabolite ratio, indicating non-normal CYP2D6/CYP2C19 metabolism (e.g., venlafaxine, risperidone, aripiprazole).
 </div>
 
@@ -103,13 +97,12 @@ Based on therapeutic drug monitoring (TDM) results [1], defined as:
 <div class="criterion-box">
 <label><input type="checkbox" name="adr"> Clinically significant adverse drug reactions (3 points)</label>
 <div class="details">
-Based solely on clinical observation and pharmacological history, the following criteria are the results of an ADR:
-- Requiring dose adjustment,
-- Increased monitoring,
-- Drug discontinuation due to intolerance or toxicity,
-- Hospitalization due to ADR,
-- Patient is unable to tolerate the drug despite standard dosing (reliable information from pharmacologic history, e.g. medical opinion).
-
+Based solely on clinical observation and pharmacological history, the following criteria are the results of an ADR:<br>
+- Requiring dose adjustment,<br>
+- Increased monitoring,<br>
+- Drug discontinuation due to intolerance or toxicity,<br>
+- Hospitalization due to ADR,<br>
+- Patient is unable to tolerate the drug despite standard dosing (reliable information from pharmacologic history, e.g. medical opinion).<br><br>
 ADRs not linked to CYP2C19/CYP2D6 metabolism variability (concentration-dependent ADRs), such as allergic or immunologically mediated reactions and weight gain, are excluded [1,7,8].
 </div>
 </div>
@@ -140,4 +133,9 @@ if (document.querySelector('input[name="treatment_resistance"]').checked) score 
 const tdmValue = parseInt(document.querySelector('input[name="tdm"]:checked').value);
 score += tdmValue;
 if (document.querySelector('input[name="adr"]').checked) score += 3;
-document.getElementById("result").innerText = "Total CYPRI Score:
+document.getElementById("result").innerText = "Total CYPRI Score: " + score;
+}
+</script>
+
+</body>
+</html>
