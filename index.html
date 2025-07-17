@@ -16,6 +16,13 @@
             display: block;
             margin: 10px 0;
         }
+        .details {
+            font-size: 14px;
+            margin-left: 20px;
+            background: #f2f2f2;
+            padding: 10px;
+            border-left: 3px solid #2c3e50;
+        }
         button {
             margin-top: 20px;
             padding: 10px;
@@ -26,20 +33,6 @@
             font-size: 20px;
             font-weight: bold;
         }
-        .info {
-            font-size: 14px;
-            margin-left: 20px;
-            display: none;
-            background: #f2f2f2;
-            padding: 10px;
-            border-left: 3px solid #2c3e50;
-        }
-        .toggle-button {
-            font-size: 12px;
-            color: #0077cc;
-            cursor: pointer;
-            margin-left: 10px;
-        }
     </style>
 </head>
 <body>
@@ -47,37 +40,38 @@
 
     <form id="cypri-form">
         <label><input type="checkbox" name="psychiatric_med"> Psychiatric medication (1 point)
-            <span class="toggle-button" onclick="toggleInfo('info1')">[details]</span>
-            <div id="info1" class="info">
-                Psychiatric drugs with high variability in CYP2D6/CYP2C19 metabolism based on Hiemke 2018, CPIC, DPWG. Examples: atomoxetine, modafinil, amitriptyline, nortriptyline, paroxetine, citalopram, escitalopram, fluoxetine, aripiprazole, risperidone, diazepam, venlafaxine.
+            <div class="details">
+                Psychiatric drugs classified as CYP2D6/CYP2C19 substrates according to [1,2,3,4,5]. Examples: atomoxetine, modafinil, amitriptyline, nortriptyline, paroxetine, citalopram, escitalopram, fluoxetine, aripiprazole, risperidone, diazepam, venlafaxine.
             </div>
         </label>
 
         <label><input type="checkbox" name="somatic_med"> Somatic medication (1 point)
-            <span class="toggle-button" onclick="toggleInfo('info2')">[details]</span>
-            <div id="info2" class="info">
-                Somatic drugs with high CYP2D6/CYP2C19 metabolism variability (CPIC, DPWG). Examples: clopidogrel, codeine, tramadol, omeprazole, pantoprazole, ondansetron, metoprolol.
+            <div class="details">
+                Non-psychiatric CYP2D6/CYP2C19 substrates according to [2,3,4,5]. Examples: clopidogrel, codeine, tramadol, omeprazole, pantoprazole, ondansetron, metoprolol.
             </div>
         </label>
 
         <label><input type="checkbox" name="treatment_resistance"> Treatment-resistant condition (1 point)
-            <span class="toggle-button" onclick="toggleInfo('info3')">[details]</span>
-            <div id="info3" class="info">
-                Defined as failure of 2+ adequate medication trials with verified adherence and dose optimization (Howes et al., 2022).
+            <div class="details">
+                Defined as failure of two or more adequate medication trials [6].
             </div>
         </label>
 
-        <label><input type="checkbox" name="tdm_discrepancy"> TDM/dose discrepancy (3 points)
-            <span class="toggle-button" onclick="toggleInfo('info4')">[details]</span>
-            <div id="info4" class="info">
-                Based on therapeutic drug monitoring (Hiemke 2018): High dose with subtherapeutic levels or low dose with supratherapeutic levels; or abnormal parent/metabolite ratio.
+        <label><input type="checkbox" name="tdm_3pts"> TDM discrepancy (3 points)
+            <div class="details">
+                High dose with subtherapeutic levels or low dose with supratherapeutic levels, or abnormal parent/metabolite ratio according to TDM [1].
+            </div>
+        </label>
+
+        <label><input type="checkbox" name="tdm_1pt"> TDM discrepancy (1 point)
+            <div class="details">
+                Plasma drug concentration outside min-max range or altered parent/metabolite ratio within normal levels but suggesting CYP2D6/CYP2C19 abnormality [1].
             </div>
         </label>
 
         <label><input type="checkbox" name="adr"> Clinically significant ADR (3 points)
-            <span class="toggle-button" onclick="toggleInfo('info5')">[details]</span>
-            <div id="info5" class="info">
-                Clinically significant ADR related to CYP2D6/CYP2C19 substrates: dose adjustment, hospitalization, intolerance, drug discontinuation. Excludes allergic/immunologic ADRs (Hiemke 2018, Lingjaerde 2001).
+            <div class="details">
+                Clinically significant ADR related to CYP2D6/CYP2C19 substrates requiring dose adjustment, monitoring, discontinuation, or hospitalization [1,7,8].
             </div>
         </label>
 
@@ -87,31 +81,26 @@
     <h2 id="result"></h2>
 
     <h3>References:</h3>
-    <ul>
-        <li>Hiemke C. et al., Consensus Guidelines for TDM in Psychiatry (2018)</li>
-        <li>Howes O. et al., Treatment Resistance (2022)</li>
-        <li>PharmGKB, CPIC, DPWG guidelines</li>
-        <li>Lingjaerde O. et al., UKU-SERS (2001)</li>
-    </ul>
+    <ol>
+        <li>Hiemke, C. et al. (2018). <i>Consensus Guidelines for TDM in Psychiatry.</i></li>
+        <li>Indiana University Drug Interactions Table.</li>
+        <li>PharmGKB. <a href="https://www.pharmgkb.org/">www.pharmgkb.org</a></li>
+        <li>CPIC Guidelines. <a href="https://cpicpgx.org/guidelines/">cpicpgx.org</a></li>
+        <li>DPWG Guidelines. <a href="https://www.knmp.nl/dossiers/farmacogenetica/pharmacogenetics">KNMP</a></li>
+        <li>Howes, O. et al. (2022). <i>Treatment resistance in psychiatry.</i></li>
+        <li>Lingjaerde, O. et al. (2001). UKU-SERS [7].</li>
+        <li>Dreher, J. et al. (1999). Novel self-rating scale for ADR [8].</li>
+    </ol>
 
     <script>
-        function toggleInfo(id) {
-            var x = document.getElementById(id);
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-        }
-
         function calculateScore() {
             let score = 0;
             if (document.querySelector('input[name="psychiatric_med"]').checked) score += 1;
             if (document.querySelector('input[name="somatic_med"]').checked) score += 1;
             if (document.querySelector('input[name="treatment_resistance"]').checked) score += 1;
-            if (document.querySelector('input[name="tdm_discrepancy"]').checked) score += 3;
+            if (document.querySelector('input[name="tdm_3pts"]').checked) score += 3;
+            if (document.querySelector('input[name="tdm_1pt"]').checked) score += 1;
             if (document.querySelector('input[name="adr"]').checked) score += 3;
-
             document.getElementById("result").innerText = "Total CYPRI Score: " + score;
         }
     </script>
