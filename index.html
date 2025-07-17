@@ -57,17 +57,20 @@
             </div>
         </label>
 
-        <label><input type="checkbox" name="tdm_3pts"> TDM discrepancy (3 points)
-            <div class="details">
-                High dose with subtherapeutic levels or low dose with supratherapeutic levels, or abnormal parent/metabolite ratio according to TDM [1].
-            </div>
-        </label>
-
-        <label><input type="checkbox" name="tdm_1pt"> TDM discrepancy (1 point)
-            <div class="details">
-                Plasma drug concentration outside min-max range or altered parent/metabolite ratio within normal levels but suggesting CYP2D6/CYP2C19 abnormality [1].
-            </div>
-        </label>
+        <fieldset style="margin-top:20px;">
+            <legend>TDM discrepancy (choose one)</legend>
+            <label><input type="radio" name="tdm" value="3"> TDM major discrepancy (3 points)
+                <div class="details">
+                    High dose with subtherapeutic levels or low dose with supratherapeutic levels, or abnormal parent/metabolite ratio [1].
+                </div>
+            </label>
+            <label><input type="radio" name="tdm" value="1"> TDM minor discrepancy (1 point)
+                <div class="details">
+                    Plasma drug concentration outside min-max range or altered parent/metabolite ratio within normal levels but suggesting CYP2D6/CYP2C19 abnormality [1].
+                </div>
+            </label>
+            <label><input type="radio" name="tdm" value="0" checked> None</label>
+        </fieldset>
 
         <label><input type="checkbox" name="adr"> Clinically significant ADR (3 points)
             <div class="details">
@@ -98,8 +101,8 @@
             if (document.querySelector('input[name="psychiatric_med"]').checked) score += 1;
             if (document.querySelector('input[name="somatic_med"]').checked) score += 1;
             if (document.querySelector('input[name="treatment_resistance"]').checked) score += 1;
-            if (document.querySelector('input[name="tdm_3pts"]').checked) score += 3;
-            if (document.querySelector('input[name="tdm_1pt"]').checked) score += 1;
+            const tdmValue = parseInt(document.querySelector('input[name="tdm"]:checked').value);
+            score += tdmValue;
             if (document.querySelector('input[name="adr"]').checked) score += 3;
             document.getElementById("result").innerText = "Total CYPRI Score: " + score;
         }
