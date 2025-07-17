@@ -7,7 +7,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 40px;
-            max-width: 600px;
+            max-width: 800px;
         }
         h1 {
             color: #2c3e50;
@@ -26,24 +26,84 @@
             font-size: 20px;
             font-weight: bold;
         }
+        .info {
+            font-size: 14px;
+            margin-left: 20px;
+            display: none;
+            background: #f2f2f2;
+            padding: 10px;
+            border-left: 3px solid #2c3e50;
+        }
+        .toggle-button {
+            font-size: 12px;
+            color: #0077cc;
+            cursor: pointer;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
     <h1>CYPRI Score Calculator</h1>
 
     <form id="cypri-form">
-        <label><input type="checkbox" name="psychiatric_med"> Psychiatric medication (1 point)</label>
-        <label><input type="checkbox" name="somatic_med"> Somatic medication (1 point)</label>
-        <label><input type="checkbox" name="treatment_resistance"> Treatment-resistant condition (1 point)</label>
-        <label><input type="checkbox" name="tdm_discrepancy"> TDM/dose discrepancy (3 points)</label>
-        <label><input type="checkbox" name="adr"> Clinically significant ADR (3 points)</label>
+        <label><input type="checkbox" name="psychiatric_med"> Psychiatric medication (1 point)
+            <span class="toggle-button" onclick="toggleInfo('info1')">[details]</span>
+            <div id="info1" class="info">
+                Psychiatric drugs with high variability in CYP2D6/CYP2C19 metabolism based on Hiemke 2018, CPIC, DPWG. Examples: atomoxetine, modafinil, amitriptyline, nortriptyline, paroxetine, citalopram, escitalopram, fluoxetine, aripiprazole, risperidone, diazepam, venlafaxine.
+            </div>
+        </label>
+
+        <label><input type="checkbox" name="somatic_med"> Somatic medication (1 point)
+            <span class="toggle-button" onclick="toggleInfo('info2')">[details]</span>
+            <div id="info2" class="info">
+                Somatic drugs with high CYP2D6/CYP2C19 metabolism variability (CPIC, DPWG). Examples: clopidogrel, codeine, tramadol, omeprazole, pantoprazole, ondansetron, metoprolol.
+            </div>
+        </label>
+
+        <label><input type="checkbox" name="treatment_resistance"> Treatment-resistant condition (1 point)
+            <span class="toggle-button" onclick="toggleInfo('info3')">[details]</span>
+            <div id="info3" class="info">
+                Defined as failure of 2+ adequate medication trials with verified adherence and dose optimization (Howes et al., 2022).
+            </div>
+        </label>
+
+        <label><input type="checkbox" name="tdm_discrepancy"> TDM/dose discrepancy (3 points)
+            <span class="toggle-button" onclick="toggleInfo('info4')">[details]</span>
+            <div id="info4" class="info">
+                Based on therapeutic drug monitoring (Hiemke 2018): High dose with subtherapeutic levels or low dose with supratherapeutic levels; or abnormal parent/metabolite ratio.
+            </div>
+        </label>
+
+        <label><input type="checkbox" name="adr"> Clinically significant ADR (3 points)
+            <span class="toggle-button" onclick="toggleInfo('info5')">[details]</span>
+            <div id="info5" class="info">
+                Clinically significant ADR related to CYP2D6/CYP2C19 substrates: dose adjustment, hospitalization, intolerance, drug discontinuation. Excludes allergic/immunologic ADRs (Hiemke 2018, Lingjaerde 2001).
+            </div>
+        </label>
 
         <button type="button" onclick="calculateScore()">Calculate Score</button>
     </form>
 
     <h2 id="result"></h2>
 
+    <h3>References:</h3>
+    <ul>
+        <li>Hiemke C. et al., Consensus Guidelines for TDM in Psychiatry (2018)</li>
+        <li>Howes O. et al., Treatment Resistance (2022)</li>
+        <li>PharmGKB, CPIC, DPWG guidelines</li>
+        <li>Lingjaerde O. et al., UKU-SERS (2001)</li>
+    </ul>
+
     <script>
+        function toggleInfo(id) {
+            var x = document.getElementById(id);
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
         function calculateScore() {
             let score = 0;
             if (document.querySelector('input[name="psychiatric_med"]').checked) score += 1;
