@@ -1,171 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>CYPRI Score Calculator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            max-width: 900px;
-            background-color: #f9f9f9;
-        }
-        h1 {
-            color: #2c3e50;
-        }
-        .criterion-box {
-            border: 2px solid #2c3e50;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 25px;
-            color: black;
-        }
-        .criterion-box:nth-of-type(1) {
-            background-color: #e0e4f0;
-        }
-        .criterion-box:nth-of-type(2) {
-            background-color: #d1e7e0;
-        }
-        .criterion-box:nth-of-type(3) {
-            background-color: #f0e7d1;
-        }
-        .criterion-box:nth-of-type(4) {
-            background-color: #e9d1e7;
-        }
-        .details {
-            font-size: 15px;
-            margin-top: 10px;
-            background: rgba(255, 255, 255, 0.7);
-            padding: 12px;
-            border-left: 4px solid #2c3e50;
-            white-space: pre-line;
-        }
-        fieldset {
-            border: 2px solid #2c3e50;
-            border-radius: 12px;
-            padding: 20px;
-            background-color: #e1f2e4;
-            color: black;
-            margin-bottom: 25px;
-        }
-        legend {
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        button {
-            margin-top: 20px;
-            padding: 12px;
-            font-size: 16px;
-            background-color: #2c3e50;
-            color: white;
-            border: none;
-            border-radius: 8px;
-        }
-        #result {
-            margin-top: 25px;
-            font-size: 22px;
-            font-weight: bold;
-        }
-        ol {
-            background-color: #f7f7f7;
-            padding: 15px;
-            border-radius: 8px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYPRI Score Calculator</title>
+<style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; }
+    h1 { text-align: center; }
+    .criterion-box { margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; border-radius: 5px; }
+    .criterion-box label { font-weight: bold; }
+    .details { font-size: 0.9em; color: #555; margin-top: 5px; }
+    .score { font-size: 1.5em; font-weight: bold; text-align: center; margin-top: 20px; }
+    .footer { margin-top: 30px; text-align: center; font-size: 0.9em; color: grey; }
+</style>
 </head>
 <body>
+
 <h1>CYPRI Score Calculator</h1>
-<form id="cypri-form">
 
 <div class="criterion-box">
-<label><input type="checkbox" name="psychiatric_med"> The use of psychiatric medication (1 point)</label>
+<label><input type="checkbox" name="psycho_med" value="1"> The use of psychiatric medication (1 point)</label>
 <div class="details">
-Psychiatric drugs are classified as CYP2D6/CYP2C19 substrates according to the Hiemke 2018 Consensus Guidelines for Therapeutic Drug Monitoring in Psychiatry, Flockhart Table, Pharmacogenomics Knowledge Base, CPIC, and DPWG guidelines for PGx-based drug metabolism impact [1,2,3,4,5].
-
-Examples:
-atomoxetine, modafinil, amitriptyline, nortriptyline, paroxetine, citalopram, escitalopram, fluoxetine, aripiprazole, risperidone, diazepam, venlafaxine.
+Psychotropic drugs that are CYP2D6 and/or CYP2C19 substrates.
+Examples: atomoxetine, amitriptyline, paroxetine, escitalopram, fluoxetine, aripiprazole, risperidone, venlafaxine.
 </div>
 </div>
 
 <div class="criterion-box">
-<label><input type="checkbox" name="somatic_med"> The use of somatic medication (1 point)</label>
+<label><input type="checkbox" name="somatic_med" value="1"> The use of somatic medication (1 point)</label>
 <div class="details">
-Non-psychiatric drugs that are also substrates for CYP2D6 and CYP2C19 according to the Flockhart Table, Pharmacogenomics Knowledge Base, CPIC, and DPWG guidelines [2,3,4,5].
-
-Examples:
-clopidogrel, codeine, tramadol, omeprazole, pantoprazole, ondansetron, metoclopramide, voriconazole, metoprolol, propafenone.
+Non-psychiatric drugs metabolised by CYP2D6 or CYP2C19.
+Examples: clopidogrel, tramadol, omeprazole, pantoprazole, metoprolol.
 </div>
 </div>
 
 <div class="criterion-box">
-<label><input type="checkbox" name="treatment_resistance"> Treatment-resistant condition (1 point)</label>
+<label><input type="checkbox" name="treatment_resistance" value="1"> Treatment-resistant condition (1 point)</label>
 <div class="details">
-Defined as the failure of two or more adequate medication trials despite verified adherence and appropriate dosing [6].
+Failure of 2+ adequate medication trials despite adherence and appropriate dosing.
 </div>
 </div>
-
-<fieldset>
-<legend>Drug plasma levels (choose one)</legend>
-
-<label><input type="radio" name="tdm" value="3"> Drug plasma levels do not correlate with the administered dose (3 points)</label>
-<div class="details">
-Based on therapeutic drug monitoring (TDM) results [1], defined as:
-- High dose with subtherapeutic drug levels (suggesting ultra-/rapid metabolism), OR
-- Low dose with supratherapeutic/toxic drug levels (suggesting intermediate/poor metabolism).
-</div>
-
-<label><input type="radio" name="tdm" value="1"> Plasma drug concentration falls outside the established minimum-maximum range (1 point)</label>
-<div class="details">
-- Plasma drug concentration falls outside the established minimum-maximum range (C/Dlow and C/Dhigh) for the specific drug according to Hiemke 2018 [1], OR
-- Altered parent drug/metabolite ratio, indicating non-normal CYP2D6/CYP2C19 metabolism (e.g., venlafaxine, risperidone, aripiprazole).
-</div>
-
-<label><input type="radio" name="tdm" value="0" checked> None</label>
-</fieldset>
 
 <div class="criterion-box">
-<label><input type="checkbox" name="adr"> Clinically significant adverse drug reactions (3 points)</label>
+<label><input type="checkbox" name="abnormal_tdm" value="3"> Abnormal TDM/plasma levels (3 points)</label>
 <div class="details">
-Based solely on clinical observation and pharmacological history, the following criteria are the results of an ADR:
-- Requiring dose adjustment,
-- Increased monitoring,
-- Drug discontinuation due to intolerance or toxicity,
-- Hospitalization due to ADR,
-- Patient is unable to tolerate the drug despite standard dosing (reliable information from pharmacologic history, e.g., medical opinion).
-
-ADRs not linked to CYP2C19/CYP2D6 metabolism variability (concentration-dependent ADRs), such as allergic or immunologically mediated reactions and weight gain, are excluded [1,7,8].
+Plasma levels inconsistent with dose: high dose but low levels or low dose with high levels.
 </div>
 </div>
 
-<button type="button" onclick="calculateScore()">Calculate Score</button>
-</form>
+<div class="criterion-box">
+<label><input type="checkbox" name="adr" value="3"> Clinically significant adverse drug reaction (3 points)</label>
+<div class="details">
+Dose adjustment, discontinuation, or hospitalization due to ADR on CYP2D6/2C19 substrate.
+</div>
+</div>
 
-<h2 id="result"></h2>
-
-<h3>References:</h3>
-<ol>
-<li>Hiemke, C. et al. (2018). Consensus guidelines for therapeutic drug monitoring in neuropsychopharmacology: Update 2017. Pharmacopsychiatry.</li>
-<li>Indiana University Drug Interactions Table.</li>
-<li>PharmGKB Database.</li>
-<li>CPIC Guidelines.</li>
-<li>DPWG Guidelines.</li>
-<li>Howes O. et al., Treatment resistance in psychiatry, Molecular Psychiatry, 2022.</li>
-<li>Lingjaerde, O. et al., UKU-SERS-Pat (2001).</li>
-<li>Dreher, J. et al., ADR scale (1999).</li>
-</ol>
+<div class="score">
+Total CYPRI Score = <span id="score">0</span>
+</div>
 
 <script>
-function calculateScore() {
-    let score = 0;
-    if (document.querySelector('input[name="psychiatric_med"]').checked) score += 1;
-    if (document.querySelector('input[name="somatic_med"]').checked) score += 1;
-    if (document.querySelector('input[name="treatment_resistance"]').checked) score += 1;
-    const tdmValue = parseInt(document.querySelector('input[name="tdm"]:checked').value);
-    score += tdmValue;
-    if (document.querySelector('input[name="adr"]').checked) score += 3;
-    document.getElementById("result").innerText = "Total CYPRI Score: " + score;
+const checkboxes = document.querySelectorAll('input[type=checkbox]');
+const scoreDisplay = document.getElementById('score');
+function updateScore() {
+    let total = 0;
+    checkboxes.forEach(cb => { if (cb.checked) total += parseInt(cb.value); });
+    scoreDisplay.textContent = total;
 }
+checkboxes.forEach(cb => cb.addEventListener('change', updateScore));
 </script>
+
+<div class="footer">
+Designed for Psychiatric Hospital Bohnice | Educational Use Only
+</div>
 
 </body>
 </html>
