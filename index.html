@@ -11,7 +11,8 @@
     .criterion-box label { font-weight: bold; }
     .details { font-size: 0.9em; color: #555; margin-top: 5px; }
     .score { font-size: 1.5em; font-weight: bold; text-align: center; margin-top: 20px; }
-    .probability { text-align: center; margin-top: 10px; font-size: 1.2em; color: #444; }
+    .interpretation-box { margin: 20px auto; padding: 15px; border: 2px solid #333; border-radius: 8px; background-color: #f9f9f9; max-width: 600px; }
+    .interpretation-text { font-size: 1.2em; text-align: center; margin-top: 10px; }
     table { width: 100%; border-collapse: collapse; margin-top: 30px; }
     th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
     th { background-color: #f2f2f2; }
@@ -63,8 +64,8 @@ Dose adjustment, discontinuation, or hospitalization due to ADR on CYP2D6/2C19 s
 Total CYPRI Score = <span id="score">0</span>
 </div>
 
-<div class="probability">
-Probability of high PGx impact = <span id="probability">11.5%</span>
+<div class="interpretation-box">
+<div class="interpretation-text" id="interpretation">Probability of PGx test result with high impact on medication = 11.5%</div>
 </div>
 
 <table>
@@ -88,7 +89,7 @@ Probability of high PGx impact = <span id="probability">11.5%</span>
 <script>
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const scoreDisplay = document.getElementById('score');
-const probabilityDisplay = document.getElementById('probability');
+const interpretationDisplay = document.getElementById('interpretation');
 
 const probabilities = [11.5, 19.1, 29.9, 43.7, 58.4, 71.8, 82.2, 89.3, 93.8, 96.5];
 
@@ -97,7 +98,7 @@ function updateScore() {
     checkboxes.forEach(cb => { if (cb.checked) total += parseInt(cb.value); });
     scoreDisplay.textContent = total;
     let prob = total >= 0 && total <= 9 ? probabilities[total] : "N/A";
-    probabilityDisplay.textContent = prob + "%";
+    interpretationDisplay.textContent = "Probability of PGx test result with high impact on medication = " + prob + "%";
 }
 checkboxes.forEach(cb => cb.addEventListener('change', updateScore));
 </script>
