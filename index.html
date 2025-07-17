@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CYPRI Score Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            max-width: 600px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>CYPRI Score Calculator</h1>
+
+    <form id="cypri-form">
+        <label><input type="checkbox" name="psychiatric_med"> Psychiatric medication (1 point)</label>
+        <label><input type="checkbox" name="somatic_med"> Somatic medication (1 point)</label>
+        <label><input type="checkbox" name="treatment_resistance"> Treatment-resistant condition (1 point)</label>
+        <label><input type="checkbox" name="tdm_discrepancy"> TDM/dose discrepancy (3 points)</label>
+        <label><input type="checkbox" name="adr"> Clinically significant ADR (3 points)</label>
+
+        <button type="button" onclick="calculateScore()">Calculate Score</button>
+    </form>
+
+    <h2 id="result"></h2>
+
+    <script>
+        function calculateScore() {
+            let score = 0;
+            if (document.querySelector('input[name="psychiatric_med"]').checked) score += 1;
+            if (document.querySelector('input[name="somatic_med"]').checked) score += 1;
+            if (document.querySelector('input[name="treatment_resistance"]').checked) score += 1;
+            if (document.querySelector('input[name="tdm_discrepancy"]').checked) score += 3;
+            if (document.querySelector('input[name="adr"]').checked) score += 3;
+
+            document.getElementById("result").innerText = "Total CYPRI Score: " + score;
+        }
+    </script>
+</body>
+</html>
