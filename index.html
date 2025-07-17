@@ -1,111 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CYPRI Score Calculator</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 40px;
-        max-width: 900px;
-        background-color: #f9f9f9;
-    }
-    h1 {
-        color: #2c3e50;
-        text-align: center;
-    }
-    .criterion-box {
-        border: 2px solid #2c3e50;
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 25px;
-        color: black;
-    }
-    .criterion-box:nth-of-type(1) { background-color: #e0e4f0; }
-    .criterion-box:nth-of-type(2) { background-color: #d1e7e0; }
-    .criterion-box:nth-of-type(3) { background-color: #f0e7d1; }
-    .criterion-box:nth-of-type(4) { background-color: #e9d1e7; }
-    .details {
-        font-size: 15px;
-        margin-top: 10px;
-        background: rgba(255, 255, 255, 0.7);
-        padding: 12px;
-        border-left: 4px solid #2c3e50;
-        white-space: pre-line;
-    }
-    fieldset {
-        border: 2px solid #2c3e50;
-        border-radius: 12px;
-        padding: 20px;
-        background-color: #e1f2e4;
-        color: black;
-        margin-bottom: 25px;
-    }
-    legend {
-        font-weight: bold;
-        color: #2c3e50;
-    }
-    button {
-        margin-top: 20px;
-        padding: 12px;
-        font-size: 16px;
-        background-color: #2c3e50;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        display: block;
-        width: 100%;
-    }
-    #result {
-        margin-top: 25px;
-        font-size: 22px;
-        font-weight: bold;
-        text-align: center;
-    }
-    #interpretation-box {
-        margin-top: 15px;
-        padding: 15px;
-        border: 2px solid #2c3e50;
-        border-radius: 12px;
-        background-color: #f3f7fa;
-        text-align: center;
-    }
-</style>
+    <meta charset="UTF-8">
+    <title>CYPRI Score Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            max-width: 900px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .criterion-box {
+            border: 2px solid #2c3e50;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            color: black;
+        }
+        .criterion-box:nth-of-type(1) {
+            background-color: #e0e4f0;
+        }
+        .criterion-box:nth-of-type(2) {
+            background-color: #d1e7e0;
+        }
+        .criterion-box:nth-of-type(3) {
+            background-color: #f0e7d1;
+        }
+        .criterion-box:nth-of-type(4) {
+            background-color: #e9d1e7;
+        }
+        .details {
+            font-size: 15px;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 12px;
+            border-left: 4px solid #2c3e50;
+            white-space: pre-line;
+        }
+        fieldset {
+            border: 2px solid #2c3e50;
+            border-radius: 12px;
+            padding: 20px;
+            background-color: #e1f2e4;
+            color: black;
+            margin-bottom: 25px;
+        }
+        legend {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+        }
+        #result {
+            margin-top: 25px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        ol {
+            background-color: #f7f7f7;
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
-
 <h1>CYPRI Score Calculator</h1>
 <form id="cypri-form">
 
-<!-- YOUR CRITERIA GOES HERE -->
+<div class="criterion-box">
+<label><input type="checkbox" name="psychiatric_med"> The use of psychiatric medication (1 point)</label>
+<div class="details">
+Psychiatric drugs are classified as CYP2D6/CYP2C19 substrates according to the Hiemke 2018 Consensus Guidelines for Therapeutic Drug Monitoring in Psychiatry, Flockhart Table, Pharmacogenomics Knowledge Base, CPIC, and DPWG guidelines for PGx-based drug metabolism impact [1,2,3,4,5].
+
+Examples:
+atomoxetine, modafinil, amitriptyline, nortriptyline, paroxetine, citalopram, escitalopram, fluoxetine, aripiprazole, risperidone, diazepam, venlafaxine.
+</div>
+</div>
+
+<div class="criterion-box">
+<label><input type="checkbox" name="somatic_med"> The use of somatic medication (1 point)</label>
+<div class="details">
+Non-psychiatric drugs that are also substrates for CYP2D6 and CYP2C19 according to the Flockhart Table, Pharmacogenomics Knowledge Base, CPIC, and DPWG guidelines [2,3,4,5].
+
+Examples:
+clopidogrel, codeine, tramadol, omeprazole, pantoprazole, ondansetron, metoclopramide, voriconazole, metoprolol, propafenone.
+</div>
+</div>
+
+<div class="criterion-box">
+<label><input type="checkbox" name="treatment_resistance"> Treatment-resistant condition (1 point)</label>
+<div class="details">
+Defined as the failure of two or more adequate medication trials despite verified adherence and appropriate dosing [6].
+</div>
+</div>
+
+<fieldset>
+<legend>Drug plasma levels (choose one)</legend>
+
+<label><input type="radio" name="tdm" value="3"> Drug plasma levels do not correlate with the administered dose (3 points)</label>
+<div class="details">
+Based on therapeutic drug monitoring (TDM) results [1], defined as:
+- High dose with subtherapeutic drug levels (suggesting ultra-/rapid metabolism), OR
+- Low dose with supratherapeutic/toxic drug levels (suggesting intermediate/poor metabolism).
+</div>
+
+<label><input type="radio" name="tdm" value="1"> Plasma drug concentration falls outside the established minimum-maximum range (1 point)</label>
+<div class="details">
+- Plasma drug concentration falls outside the established minimum-maximum range (C/Dlow and C/Dhigh) for the specific drug according to Hiemke 2018 [1], OR
+- Altered parent drug/metabolite ratio, indicating non-normal CYP2D6/CYP2C19 metabolism (e.g., venlafaxine, risperidone, aripiprazole).
+</div>
+
+<label><input type="radio" name="tdm" value="0" checked> None</label>
+</fieldset>
+
+<div class="criterion-box">
+<label><input type="checkbox" name="adr"> Clinically significant adverse drug reactions (3 points)</label>
+<div class="details">
+Based solely on clinical observation and pharmacological history, the following criteria are the results of an ADR:
+- Requiring dose adjustment,
+- Increased monitoring,
+- Drug discontinuation due to intolerance or toxicity,
+- Hospitalization due to ADR,
+- Patient is unable to tolerate the drug despite standard dosing (reliable information from pharmacologic history, e.g., medical opinion).
+
+ADRs not linked to CYP2C19/CYP2D6 metabolism variability (concentration-dependent ADRs), such as allergic or immunologically mediated reactions and weight gain, are excluded [1,7,8].
+</div>
+</div>
 
 <button type="button" onclick="calculateScore()">Calculate Score</button>
 </form>
 
-<div id="result"></div>
-<div id="interpretation-box">
-    <div id="probability"></div>
-    <div id="interpretation"></div>
-</div>
+<h2 id="result"></h2>
+
+<h3>References:</h3>
+<ol>
+<li>Hiemke, C. et al. (2018). Consensus guidelines for therapeutic drug monitoring in neuropsychopharmacology: Update 2017. Pharmacopsychiatry.</li>
+<li>Indiana University Drug Interactions Table.</li>
+<li>PharmGKB Database.</li>
+<li>CPIC Guidelines.</li>
+<li>DPWG Guidelines.</li>
+<li>Howes O. et al., Treatment resistance in psychiatry, Molecular Psychiatry, 2022.</li>
+<li>Lingjaerde, O. et al., UKU-SERS-Pat (2001).</li>
+<li>Dreher, J. et al., ADR scale (1999).</li>
+</ol>
 
 <script>
-const probabilities = [11.5, 19.1, 29.9, 43.7, 58.4, 71.8, 82.2, 89.3, 93.8, 96.5];
-
 function calculateScore() {
     let score = 0;
-    if (document.querySelector('input[name="psychiatric_med"]')?.checked) score += 1;
-    if (document.querySelector('input[name="somatic_med"]')?.checked) score += 1;
-    if (document.querySelector('input[name="treatment_resistance"]')?.checked) score += 1;
-    const tdm = parseInt(document.querySelector('input[name="tdm"]:checked')?.value || 0);
-    score += tdm;
-    if (document.querySelector('input[name="adr"]')?.checked) score += 3;
-
-    document.getElementById("result").innerText = `Total CYPRI Score = ${score}`;
-    const prob = probabilities[score] !== undefined ? probabilities[score] : "N/A";
-    document.getElementById("probability").innerText = `Probability of high PGx impact = ${prob}%`;
-    document.getElementById("interpretation").innerText = (prob !== "N/A") ? 
-        `At this CYPRI score, approximately ${prob}% of patients may experience clinically actionable PGx results affecting medication.` : "Interpretation not available.";
+    if (document.querySelector('input[name="psychiatric_med"]').checked) score += 1;
+    if (document.querySelector('input[name="somatic_med"]').checked) score += 1;
+    if (document.querySelector('input[name="treatment_resistance"]').checked) score += 1;
+    const tdmValue = parseInt(document.querySelector('input[name="tdm"]:checked').value);
+    score += tdmValue;
+    if (document.querySelector('input[name="adr"]').checked) score += 3;
+    document.getElementById("result").innerText = "Total CYPRI Score: " + score;
 }
 </script>
 
